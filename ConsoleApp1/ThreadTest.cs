@@ -23,9 +23,16 @@ namespace ConsoleApp1
             Console.WriteLine("ВВод пользователя");
             Console.ReadLine();
 
-            timerThread.Interrupt();
-            
-            timerThread.Join();//таким образом мы заставялем наш главный поток ждать пока не завершиться вторичный 
+            timerThread.Interrupt();//данный метод сейчас считается не безопасным 
+
+
+            //тот тайм аут который мы передали в метод джоин должен совпадать или быть чуть больше чем  тот который установлен в нутри потока в данном случаем это TimerUpdate и его Thread.Sleep(250)
+           if(! timerThread.Join(300))//таким образом мы заставялем наш главный поток ждать пока не завершиться вторичный , но в таком случаем мы можем получить мертвую блакировку ибо первый поток никогда не закончиться а второй будет его ждать
+            {
+                timerThread.Interrupt();//если у нас не удалось ссинхронизироваться с нашим потоком то мы останавливаем его жестко
+                timerThread.Join();//таким образом после оставновки мы гарантированно с ним синхронизируемся 
+            }
+
             Console.WriteLine("программа завершена");
         }
 
@@ -41,12 +48,12 @@ namespace ConsoleApp1
                 while (true)
                 {
                     Console.Title = DateTime.Now.ToString("dd.mm.yyyy HH: mm:ss: ffff");
-                    Thread.Sleep(256);
+                    Thread.Sleep(250);
                 }
             }
             catch (ThreadInterruptedException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Поток преврав мягко ",e);
             }
         }
     }
