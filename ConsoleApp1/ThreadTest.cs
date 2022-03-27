@@ -41,7 +41,7 @@ namespace ConsoleApp1
         /// <summary>
         /// это флаг для управлением циклом по обновлению таймера извне 
         /// </summary>
-        private static bool UpdateTitleTaimer = true;
+        private static volatile bool UpdateTitleTaimer = true;//ключевое слово volatile предотвращает изменения ее компилятором 
 
         /// <summary>
         /// тут выполняется вторичный поток 
