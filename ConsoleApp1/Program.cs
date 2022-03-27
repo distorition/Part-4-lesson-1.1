@@ -18,8 +18,8 @@ namespace ConsoleApp1
             //}
 
            // ThreadTest.Run();
-           CriticalSection.Run();
-
+           //CriticalSection.Run();
+           
         }
     }
 }
