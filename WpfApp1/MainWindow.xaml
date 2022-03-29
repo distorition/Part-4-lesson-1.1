@@ -11,6 +11,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="380,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="143"><Run Text="TextBlock"/><InlineUIContainer>
                 <TextBlock TextWrapping="Wrap" Text="TextBlock" Name="ResultTextBlock"/>
             </InlineUIContainer></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="74,188,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="-1.282,0.475" Height="94" Width="106" Name="Fibonachi"/>
+        <Button Content="CalcFibonachi" HorizontalAlignment="Left" Margin="74,311,0,0" VerticalAlignment="Top" Width="106" Height="49" Click="StartCalcFibonachi"/>
+        <TextBlock HorizontalAlignment="Left" Margin="83,146,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="-1.782,-3.275" Name="Taimer"/>
 
     </Grid>
 </Window>

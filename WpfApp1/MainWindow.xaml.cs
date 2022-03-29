@@ -59,5 +59,76 @@ namespace WpfApp1
             return DateTime.Now.ToString();
         }
 
+        private void StartCalcFibonachi(object sender, RoutedEventArgs e)
+        {
+            var second = new Thread(() => Calc());
+            second.Start();
+            second.Join();
+            var thread = new Thread(() =>
+             {
+                 var fib = Fibonachssi();
+                 Fibonachi.Dispatcher.Invoke(() =>
+                 {
+                     Fibonachi.Text = fib;
+                 });
+             });
+            thread.Start();
+            
+           
+
+        }
+        //private void Run()
+        //{
+        //    ThreadPool.QueueUserWorkItem(x => Dicres());
+        //}
+
+        private void Calc()
+        {
+            var num = Enumerable.Range(1, 3).Select(x => x);
+            foreach( var item in num)
+            {
+                Taimer.Dispatcher.Invoke(() =>
+                {
+                    Taimer.Text = Convert.ToString(item);
+                });
+                Thread.Sleep(250);
+            }
+        }
+
+        //private void Dicres()
+        //{
+
+        //    var thread = new Thread(() =>
+        //     {
+        //         Taimer.Dispatcher.Invoke(() =>
+        //         {
+        //             int num = 5;
+        //             for (int i = 0; i < 5; i++)
+        //             {
+        //                 Taimer.Text = Convert.ToString(num--);
+
+        //                 Thread.Sleep(100);
+        //                 if (num == 1)
+        //                 {
+        //                     break;
+        //                 }
+        //             }
+        //         });
+            
+        //     });
+        //}
+
+        private string Fibonachssi()
+        {
+            int randNum = new Random().Next(1, 100);
+            if (randNum == 1)
+            {
+                return Convert.ToString( 1);
+            }
+            Thread.Sleep(250);
+            var num = Convert.ToString(randNum * (randNum - 1));
+            return num;
+        }
+
     }
 }
