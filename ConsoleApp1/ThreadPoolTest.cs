@@ -11,22 +11,24 @@ namespace ConsoleApp1
     {
         public static void Run()
         {
-            var message = Enumerable.Range(1, 1000).Select(i => $"message{i}");
+        //    ThreadPool.SetMinThreads(4, 4); // при помщи этих методов мы можем регулировать кол-во потоков 
+        //    ThreadPool.SetMaxThreads(32, 32);//первая цифра это сколько будет рабочих  вторая максимальное кол-во но обычно их с авят одинаково  
+           var message = Enumerable.Range(1, 1000).Select(i => $"message{i}");
             foreach(var item in message)
             {
-                ThreadPool.QueueUserWorkItem(x => ProcessMesage(item)); 
+                ThreadPool.QueueUserWorkItem(x => ProcessMesage(item));//для запуска наших потоков паралельно 
             }
             Console.ReadLine();
         }
 
         private static void ProcessMesage(string Message, int Timeout = 250)
         {
-            Console.WriteLine($"Запуск обработки {Message} в потоке {Environment.CurrentManagedThreadId}");
+            Console.WriteLine($"[id {Environment.CurrentManagedThreadId}] Запуск обработки {Message} ");
             if (Timeout > 0)
             {
                 Thread.Sleep(Timeout);
             }
-            Console.WriteLine($"процесс обработки {Message} в потоке {Environment.CurrentManagedThreadId} завершен");
+            Console.WriteLine($"[id {Environment.CurrentManagedThreadId}] процесс обработки {Message} в потоке  завершен");
         }
     }
 }

@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Part 4 lesson 1", "Part 4 lesson 1\Part 4 lesson 1.csproj", "{07543F8C-AE0F-4D7F-88E1-963DE620DB80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C25339E9-36F9-4565-9ED6-0F5C83A7D33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{790B6C73-75AF-417E-9886-141802BE833C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{790B6C73-75AF-417E-9886-141802BE833C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{790B6C73-75AF-417E-9886-141802BE833C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790B6C73-75AF-417E-9886-141802BE833C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{790B6C73-75AF-417E-9886-141802BE833C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
+		{790B6C73-75AF-417E-9886-141802BE833C} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}
