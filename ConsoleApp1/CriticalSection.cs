@@ -12,18 +12,20 @@ namespace ConsoleApp1
         public static void Run()
         {
             var threadLis = new List<Thread>();
+
             for (int i = 0; i < 10; i++)
             {
                 var loacl = i;//при помощи локальной переменной мы избавляемся от замыкания цикла 
                 var thread = new Thread(() => Print($"Message-{loacl}", 10));
-                thread.IsBackground = true;
+                thread.IsBackground = true;// мы делаем его фоновым чтобы он не мешал нашему основному потоку при его заврешении и таким образом мы сможем завершить нашу прогрумму 
+                //не дожидаясь когда этот поток закончит свое дейсвтие ибо он завершиться вместе с ней а
                 threadLis.Add(thread);
                 thread.Start();
             }
             Console.ReadLine();
         }
 
-        private static readonly object SyncRoot = new object();
+        private static readonly object SyncRoot = new object();// при помщи этой переменной мы блокируем способы прерывания нашего потока и таким образом другой поток не сможет в него войти
         private static void Print(string MEssage, int count , int Timeout = 200)
         {
             for (int i = 0; i < count; i++)
@@ -52,6 +54,7 @@ namespace ConsoleApp1
                 var thread = new Thread(() =>
                  {
                      var threadId = Environment.CurrentManagedThreadId;
+
                      for (int j = 0; j < 50; j++)
                      {
                          var message = $"[{j} ]Message-{j} form threadf {threadId}";

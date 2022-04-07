@@ -31,8 +31,8 @@ namespace WpfApp1
         {
             var thread = new Thread(() =>
              {
+                 
                 
-
                  // когда мф встречаем ошибку что не можем получить данные из другого потока то там нужно наши данные которые изменяются разбить на два этапа
 
                  var resulr = LongPorcesCalc();//занести их в переменную и получить их через метод Invoke или BeginInvoke
@@ -57,6 +57,55 @@ namespace WpfApp1
                 }
             }
             return DateTime.Now.ToString();
+        }
+
+        private void StartCalcFibonachi(object sender, RoutedEventArgs e)
+        {
+            var againThread = new Thread(() =>
+             {
+                 Calc();
+                 var fib = Fibonachssi();
+                 Fibonachi.Dispatcher.Invoke(() =>
+                 {
+                     Fibonachi.Text = fib;
+                 });
+             });
+            againThread.Start();
+        }
+
+        private static readonly object SyncRoot = new object();
+        private static readonly object SyncRoot1 = new object();
+        private void Calc()
+        {
+            lock (SyncRoot)
+            {
+                var num = Enumerable.Range(1, 3).Select(x => x);
+                foreach (var item in num)
+                {
+                    Taimer.Dispatcher.Invoke(() =>
+                    {
+                        Taimer.Text = Convert.ToString(item);
+                    });
+                    Thread.Sleep(250);
+                }
+            }
+        }
+         
+
+        private string Fibonachssi()
+        {
+            lock(SyncRoot1)
+            {
+                int randNum = new Random().Next(1, 100);
+                if (randNum == 1)
+                {
+                    return Convert.ToString(1);
+                }
+                Thread.Sleep(250);
+                var num = Convert.ToString(randNum * (randNum - 1));
+                return num;
+            }
+            
         }
 
     }
