@@ -21,8 +21,9 @@ namespace ConsoleApp1
             //CriticalSection.Run();
             //  SynchornizationTest.Run();
             //  ThreadPoolTest.Run();
-            ParalelTest.Run();
+            // ParalelTest.Run();
             //ThreadSafeDictinary.Run();
+            AsyncAwaitTest.Run();
         }
     }
 }
