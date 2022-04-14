@@ -17,9 +17,13 @@ namespace ConsoleApp1
             //    Thread.Sleep(100);
             //}
 
-             ThreadTest.Run();
+            //ThreadTest.Run();
             //CriticalSection.Run();
-            //ThreadPoolTest.Run();
+            //  SynchornizationTest.Run();
+            //  ThreadPoolTest.Run();
+            // ParalelTest.Run();
+            //ThreadSafeDictinary.Run();
+            AsyncAwaitTest.Run();
         }
     }
 }
