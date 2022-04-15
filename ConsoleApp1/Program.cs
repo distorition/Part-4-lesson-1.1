@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             var currentThread = Thread.CurrentThread;
@@ -23,7 +24,9 @@ namespace ConsoleApp1
             //  ThreadPoolTest.Run();
             // ParalelTest.Run();
             //ThreadSafeDictinary.Run();
-            AsyncAwaitTest.Run();
+            //var ttask= AsyncAwaitTest.RunAsync();// таким образом если выскочит ошибка то она будет хранится в переменной и не положит нашу программу 
+          await AsyncAwaitTest.Run2Async();
+           
         }
     }
 }
