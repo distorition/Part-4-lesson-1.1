@@ -47,7 +47,7 @@ namespace WpfApp1
             thread.Start();
            
         }
-
+        private CancellationTokenSource cancellation;// тут мы выставили флаг на наш токен
         private async void StartProgres(object sender, RoutedEventArgs e) //все что написанно в методе StartColcButton мы уместили сюда в две строки 
         {
             //sender это и есть наша кнопка старта 
@@ -58,10 +58,23 @@ namespace WpfApp1
             StartButton.IsEnabled = false; //тут переключаем наши кнопки
             CancelButton.IsEnabled = true;
 
+            //прежде чем получатть прогресс нам надо его обьявить 
             IProgress<double> progress = new Progress<double>(p => ProgressInfo.Value = p * 100);// где бы его не вызвали , он всегда будет запускаться в потоке интерфейса
 
-            var result = await Task.Run(() => LongPorcesCalcAsync(20,progress));//запуск асинхронно и паралельно 
-            ResultText.Text = result.ToString();
+            var cancelToken = new CancellationTokenSource();// то что генерирует токены отмены , через нее мы можем отменять операции 
+            cancellation = cancelToken;
+            // cancelToken.Cancel();/// у всех токенов отмены произойдет отмена операции 
+
+            try// если мы собираемся что то отменять при помщи токенов , то нам нужно все это засунуть в конструкцию try cath
+            {
+                var result = await Task.Run(() => LongPorcesCalcAsync(20, progress, cancelToken.Token));//запуск асинхронно и паралельно 
+                ResultText.Text = result.ToString();
+            }
+            catch (OperationCanceledException)// таким образом наша программа не ляжет полностью при отмены операции 
+            {
+                progress.Report(0);
+                ResultText.Text = "Операция отменена";
+            }
 
            // ResultText.Text = await LongPorcesCalcAsync(); //таким образом мы имея асинхронный метод можем еще больше сократить наш код
             StartButton.IsEnabled = true;
@@ -70,7 +83,7 @@ namespace WpfApp1
         }
         private  void ClalcButton(object sender, RoutedEventArgs e)
         {
-            
+            cancellation.Cancel();// а тут мы при помщи токена отменяем нашу операцию
         }
         private string LongPorcesCalc(int time = 50)
         {
@@ -86,11 +99,16 @@ namespace WpfApp1
                                                                     //рекомендуется добвлять эти параметры (Progress,token)во все асинхронные методы последними параметрами с дефолтными значениями 
         private async Task<string> LongPorcesCalcAsync(int time = 50,IProgress<double> Progress=null, CancellationToken token=default)//Progress для отображения прогресса , token для прирывания 
         {
+            token.ThrowIfCancellationRequested();// в асинхронных метода проверка на отмену происходит в трех места ,  в начале , в цике , и перед завершением потому что в любой момент операция может быть отменена 
             const int iterationCount = 100;
             if (time > 0)
             {
                 for (int i = 0; i < iterationCount; i++)
                 {
+                    if (token.IsCancellationRequested)//тут мы проверяем была ли произведена отмена операции 
+                    {
+                        token.ThrowIfCancellationRequested();//отменя происходит путием генирации ошибки
+                    }
                     await Task.Delay(time).ConfigureAwait(false);// при помощи Delay наш асинхронный  код засыпает , CongigureAwait чтобы запустили в потоке в котором начали 
                     //Thread.Sleep(time);
 
@@ -98,6 +116,7 @@ namespace WpfApp1
                 }
                 Progress.Report(1);// чтобы у нас дошло до конца мы просто в самом конце сделаем его максимальным значением 
             }
+            token.ThrowIfCancellationRequested();
             return DateTime.Now.ToString();
         }
 
