@@ -19,12 +19,12 @@
             </InlineUIContainer></TextBlock>
         <Button Name ="StartButton"  Content="Start" HorizontalAlignment="Left" Margin="578,311,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartProgres"/>
         <Button Name="CancelButton" IsEnabled="False" Content="Cancel" HorizontalAlignment="Left" Margin="578,350,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="ClalcButton"/>
-        <ProgressBar Name="Progress" HorizontalAlignment="Left" Height="40" Margin="538,208,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.5,0.5">
+        <ProgressBar Name="ProgressInfo" HorizontalAlignment="Left" Height="40" Margin="538,208,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.5,0.5" >
             <ProgressBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="179.262"/>
+                    <RotateTransform Angle="359.216"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </ProgressBar.RenderTransform>

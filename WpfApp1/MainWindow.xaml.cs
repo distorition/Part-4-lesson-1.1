@@ -57,8 +57,13 @@ namespace WpfApp1
             //}
             StartButton.IsEnabled = false; //тут переключаем наши кнопки
             CancelButton.IsEnabled = true;
-            var result = await Task.Run(() => LongPorcesCalc());//запуск асинхронно и паралельно 
+
+            IProgress<double> progress = new Progress<double>(p => ProgressInfo.Value = p * 100);// где бы его не вызвали , он всегда будет запускаться в потоке интерфейса
+
+            var result = await Task.Run(() => LongPorcesCalcAsync(20,progress));//запуск асинхронно и паралельно 
             ResultText.Text = result.ToString();
+
+           // ResultText.Text = await LongPorcesCalcAsync(); //таким образом мы имея асинхронный метод можем еще больше сократить наш код
             StartButton.IsEnabled = true;
             CancelButton.IsEnabled = false;
            //ResultText.Text = await Task.Run(() => LongPorcesCalc());// вобще в одну строчку сделали 
@@ -75,6 +80,23 @@ namespace WpfApp1
                 {
                     Thread.Sleep(time);
                 }
+            }
+            return DateTime.Now.ToString();
+        }
+                                                                    //рекомендуется добвлять эти параметры (Progress,token)во все асинхронные методы последними параметрами с дефолтными значениями 
+        private async Task<string> LongPorcesCalcAsync(int time = 50,IProgress<double> Progress=null, CancellationToken token=default)//Progress для отображения прогресса , token для прирывания 
+        {
+            const int iterationCount = 100;
+            if (time > 0)
+            {
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    await Task.Delay(time).ConfigureAwait(false);// при помощи Delay наш асинхронный  код засыпает , CongigureAwait чтобы запустили в потоке в котором начали 
+                    //Thread.Sleep(time);
+
+                    Progress.Report((double)i / iterationCount);
+                }
+                Progress.Report(1);// чтобы у нас дошло до конца мы просто в самом конце сделаем его максимальным значением 
             }
             return DateTime.Now.ToString();
         }
