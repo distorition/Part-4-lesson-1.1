@@ -47,6 +47,26 @@ namespace WpfApp1
             thread.Start();
            
         }
+
+        private async void StartProgres(object sender, RoutedEventArgs e) //все что написанно в методе StartColcButton мы уместили сюда в две строки 
+        {
+            //sender это и есть наша кнопка старта 
+            //if(sender is not Button StartButton)// такаяпроверка доступна только в С 9.0
+            //{
+            //    return;
+            //}
+            StartButton.IsEnabled = false; //тут переключаем наши кнопки
+            CancelButton.IsEnabled = true;
+            var result = await Task.Run(() => LongPorcesCalc());//запуск асинхронно и паралельно 
+            ResultText.Text = result.ToString();
+            StartButton.IsEnabled = true;
+            CancelButton.IsEnabled = false;
+           //ResultText.Text = await Task.Run(() => LongPorcesCalc());// вобще в одну строчку сделали 
+        }
+        private  void ClalcButton(object sender, RoutedEventArgs e)
+        {
+            
+        }
         private string LongPorcesCalc(int time = 50)
         {
             if (time > 0)

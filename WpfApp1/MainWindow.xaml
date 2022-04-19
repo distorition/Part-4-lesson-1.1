@@ -7,13 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="380,326,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartColcButton"/>
-        <TextBlock HorizontalAlignment="Left" Margin="380,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="143"><Run Text="TextBlock"/><InlineUIContainer>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="306,311,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartColcButton"/>
+        <TextBlock HorizontalAlignment="Left" Margin="306,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="143"><Run Text="TextBlock"/><InlineUIContainer>
                 <TextBlock TextWrapping="Wrap" Text="TextBlock" Name="ResultTextBlock"/>
             </InlineUIContainer></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="74,188,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="-1.282,0.475" Height="94" Width="106" Name="Fibonachi"/>
         <Button Content="CalcFibonachi" HorizontalAlignment="Left" Margin="74,311,0,0" VerticalAlignment="Top" Width="106" Height="49" Click="StartCalcFibonachi"/>
         <TextBlock HorizontalAlignment="Left" Margin="83,146,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="-1.782,-3.275" Name="Taimer"/>
+        <TextBlock Name="ResultText" HorizontalAlignment="Left" Margin="578,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="143"><Run Text="Text"/><Run Text="Bl"/><Run Text="ock"/><InlineUIContainer>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock" x:Name="ResultTextBlock1"/>
+            </InlineUIContainer></TextBlock>
+        <Button Name ="StartButton"  Content="Start" HorizontalAlignment="Left" Margin="578,311,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartProgres"/>
+        <Button Name="CancelButton" IsEnabled="False" Content="Cancel" HorizontalAlignment="Left" Margin="578,350,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="ClalcButton"/>
+        <ProgressBar Name="Progress" HorizontalAlignment="Left" Height="40" Margin="538,208,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.5,0.5">
+            <ProgressBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="179.262"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
 
     </Grid>
 </Window>
