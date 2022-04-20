@@ -123,23 +123,27 @@ namespace WpfApp1
             return DateTime.Now.ToString();
         }
 
-        private void StartCalcFibonachi(object sender, RoutedEventArgs e)
+        private async void StartCalcFibonachi(object sender, RoutedEventArgs e)
         {
-            var againThread = new Thread(() =>
-             {
-                 Calc();
-                 var fib = Fibonachssi();
-                 Fibonachi.Dispatcher.Invoke(() =>
-                 {
-                     Fibonachi.Text = fib;
-                 });
-             });
-            againThread.Start();
+            ///все что в коментах то было запущено через потоки 
+            //var againThread = new Thread(() =>
+            // {
+            //     Calc();
+            //     var fib = Fibonachssi();
+            //     Fibonachi.Dispatcher.Invoke(() =>
+            //     {
+            //         Fibonachi.Text = fib;
+            //     });
+            // });
+            //againThread.Start();
+            var clas = await Task.Run(() => Calc());
+            var result = await Task.Run(() => Fibonachssi());
+            Fibonachi.Text = result.ToString();
         }
 
         private static readonly object SyncRoot = new object();
         private static readonly object SyncRoot1 = new object();
-        private void Calc()
+        private int Calc()
         {
             lock (SyncRoot)
             {
@@ -152,25 +156,25 @@ namespace WpfApp1
                     });
                     Thread.Sleep(250);
                 }
+                return 1;
             }
         }
          
 
-        private string Fibonachssi()
+        private  string Fibonachssi()
         {
             lock(SyncRoot1)
             {
                 int randNum = new Random().Next(1, 100);
                 if (randNum == 1)
                 {
-                    return Convert.ToString(1);
+                    return "1".ToString();
                 }
                 Thread.Sleep(250);
-                var num = Convert.ToString(randNum * (randNum - 1));
+                var num = (randNum * (randNum - 1)).ToString();
                 return num;
             }
             
         }
-
     }
 }
