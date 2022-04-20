@@ -27,29 +27,32 @@ namespace WpfApp1
         }
 
 
-        private void StartColcButton(object sender, RoutedEventArgs e)
+        private async void StartColcButton(object sender, RoutedEventArgs e)
         {
-            var thread = new Thread(() =>
-             {
-                 
-                
-                 // когда мф встречаем ошибку что не можем получить данные из другого потока то там нужно наши данные которые изменяются разбить на два этапа
+            //var thread = new Thread(() =>
+            // {
 
-                 var resulr = LongPorcesCalc();//занести их в переменную и получить их через метод Invoke или BeginInvoke
 
-                 Dispatcher.Invoke(() => Title = DateTime.Now.ToString());//тут мы изменияем наше имя окна так чтобы приложение не зависло
+            //     // когда мф встречаем ошибку что не можем получить данные из другого потока то там нужно наши данные которые изменяются разбить на два этапа
 
-                 ResultTextBlock.Dispatcher.Invoke(() =>//при помощи метода инвоке мы заставляем наши потоки ждать пока не завершиться оснвной 
-                 {
-                     ResultTextBlock.Text = resulr;
-                 });
-             });// таким рьразом мы сделали наш поток фоновым и теперь и пробработки данного метода приложения не будет зависать 
-            thread.Start();
+            //     var resulr = LongPorcesCalc();//занести их в переменную и получить их через метод Invoke или BeginInvoke
+
+            //     Dispatcher.Invoke(() => Title = DateTime.Now.ToString());//тут мы изменияем наше имя окна так чтобы приложение не зависло
+
+            //     ResultTextBlock.Dispatcher.Invoke(() =>//при помощи метода инвоке мы заставляем наши потоки ждать пока не завершиться оснвной 
+            //     {
+            //         ResultTextBlock.Text = resulr;
+            //     });
+            // });// таким рьразом мы сделали наш поток фоновым и теперь и пробработки данного метода приложения не будет зависать 
+            //thread.Start();
+            var resukt = await Task.Run(() => LongPorcesCalc());
+            ResultTextBlock.Text = resukt.ToString();
            
         }
         private CancellationTokenSource cancellation;// тут мы выставили флаг на наш токен
         private async void StartProgres(object sender, RoutedEventArgs e) //все что написанно в методе StartColcButton мы уместили сюда в две строки 
         {
+            
             //sender это и есть наша кнопка старта 
             //if(sender is not Button StartButton)// такаяпроверка доступна только в С 9.0
             //{
@@ -109,7 +112,7 @@ namespace WpfApp1
                     {
                         token.ThrowIfCancellationRequested();//отменя происходит путием генирации ошибки
                     }
-                    await Task.Delay(time).ConfigureAwait(false);// при помощи Delay наш асинхронный  код засыпает , CongigureAwait чтобы запустили в потоке в котором начали 
+                    await Task.Delay(time).ConfigureAwait(false);// при помощи Delay наш асинхронный  код засыпает , CongigureAwait чтобы запустили в любом другом потоке 
                     //Thread.Sleep(time);
 
                     Progress.Report((double)i / iterationCount);
