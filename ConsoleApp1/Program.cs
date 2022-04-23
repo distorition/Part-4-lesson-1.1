@@ -6,11 +6,11 @@ namespace ConsoleApp1
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static/* async Task */void Main(string[] args)
         {
 
-            var currentThread = Thread.CurrentThread;
-            currentThread.Priority = ThreadPriority.Highest;
+            //var currentThread = Thread.CurrentThread;
+            //currentThread.Priority = ThreadPriority.Highest;
 
             //while (true)
             //{
@@ -25,7 +25,8 @@ namespace ConsoleApp1
             // ParalelTest.Run();
             //ThreadSafeDictinary.Run();
             //var ttask= AsyncAwaitTest.RunAsync();// таким образом если выскочит ошибка то она будет хранится в переменной и не положит нашу программу 
-          await AsyncAwaitTest.Run2Async();
+            // await AsyncAwaitTest.Run2Async();
+            LogingExamples.Run();
            
         }
     }

@@ -161,7 +161,7 @@ namespace WpfApp1
         }
          
 
-        private  string Fibonachssi()
+        private string Fibonachssi()
         {
             lock(SyncRoot1)
             {
