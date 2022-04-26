@@ -26,8 +26,8 @@ namespace ConsoleApp1
             //ThreadSafeDictinary.Run();
             //var ttask= AsyncAwaitTest.RunAsync();// таким образом если выскочит ошибка то она будет хранится в переменной и не положит нашу программу 
             // await AsyncAwaitTest.Run2Async();
-            LogingExamples.Run();
-           
+            //LogingExamples.Run();
+            BuilderPattern.Run();
         }
     }
 }
