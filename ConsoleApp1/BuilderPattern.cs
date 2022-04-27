@@ -16,50 +16,20 @@ namespace ConsoleApp1
         public static double Sinc(double x) => Math.Sin(x) / x;  
         public static void Run()
         {
-            var model = new PlotModel
-            {
-                //добавляем пару осей(необязательно)
-                Axes =
-                {
-                    new LinearAxis//так же мы можем в осинах устанавливать свои настройки 
-                    {
-                    Position = AxisPosition.Left,
-                    MajorGridlineColor=OxyColors.Gray,
-                    MajorGridlineStyle=LineStyle.Solid,
-                    MinorGridlineColor=OxyColors.LightGray,
-                    MinorGridlineStyle=LineStyle.Dash
-                    },
-                    new LinearAxis 
-                    {
-
-                    Position = AxisPosition.Right,
-                    MajorGridlineColor=OxyColors.Gray,
-                    MajorGridlineStyle=LineStyle.Solid,
-                    MinorGridlineColor=OxyColors.LightGray,
-                    MinorGridlineStyle=LineStyle.Dash
-                    },
-                },
-                Background = OxyColors.White,
-
-                //добавляемм графики (можно обойтись чисто этим без всего того что сверху)
-                Series =
-                {
-                    new FunctionSeries(x => Sinc(2 * Math.PI * x), -5, 5, 0.1, "Sinc(x)")//в начале указываем функцию, интервал , шаг 
-                    {
-                        //тут настройки самого графика 
-                        Color= OxyColors.Red,
-                        StrokeThickness=2,
-                    }
-
-                }
-            };
+            var plotter=new PlotBuilde()//флуент интерфейс
+                .SetBackground(OxyColors.Peru)
+                .SetAsixleftMinorGridLineColor(OxyColors.Pink)
+                .Plot(x => Sinc(Math.PI * 2 * x), -5, 5, 0.01, OxyColors.Red, 2)
+                .Plot(x => Math.Sin(2*Math.PI  * x), -5, 5,0.01, OxyColors.Green, 1)
+                .Plot(x=>Math.Cos(2 * Math.PI * x), -5, 5, 0.01, OxyColors.LimeGreen, 1)
+                .CreateModel();
 
             //теперь у нас есть модель графика и её надо экспортировать
             var exports = new PngExporter(800,600);//в начале указываем ширину , 
             var pngFile = new FileInfo("sinc.png");
             using(var png = pngFile.Create())
             {
-                exports.Export(model, png);
+                exports.Export(plotter, png);
             }
         }
     }
@@ -67,22 +37,78 @@ namespace ConsoleApp1
     public class PlotBuilde
     {
         private readonly List<(Func<double, double> f, double MinX, double MaxX, double stepX, OxyColor color, double StrokeThickness)> Plots
-            = new List<(Func<double, double> f, double MinX, double MaxX, double stepX, OxyColor color, double StrokeThickness)>(); 
-        public OxyColor Background { get; set; } 
-        public OxyColor AsixleftMajorGridLineColor { get; set; }
-        public OxyColor AsixBottontMajorGridLineColor { get; set; }
-        public LineStyle AsixleftMajorGridLineStyle { get; set; }
-        public LineStyle AsixBottontMajorGridLineStyle { get; set; }
-        public OxyColor AsixleftMinorGridLineColor { get; set; }
-        public OxyColor AsixBottonMinorfGridLineStyle { get; set; }
-        public LineStyle AsixleftMinorrGridLineStyle { get; set; }
-        public LineStyle AsixBottonMinorGridLineStyle { get; set; }
+            = new List<(Func<double, double> f, double MinX, double MaxX, double stepX, OxyColor color, double StrokeThickness)>();
+        public OxyColor Background { get; set; } = OxyColors.White;
+        public OxyColor AsixleftMajorGridLineColor { get; set; } = OxyColors.Gray;
+        public OxyColor AsixBottontMajorGridLineColor { get; set; } = OxyColors.Gray;
+        public LineStyle AsixleftMajorGridLineStyle { get; set; }=LineStyle.Solid;
+        public LineStyle AsixBottontMajorGridLineStyle { get; set; }=LineStyle.Solid;
+        public OxyColor AsixleftMinorGridLineColor { get; set; } = OxyColors.LightBlue;
+        public OxyColor AsixBottonMinorfGridLineStyle { get; set; }= OxyColors.LightBlue;
+        public LineStyle AsixleftMinorrGridLineStyle { get; set; }=LineStyle.Solid;
+        public LineStyle AsixBottonMinorGridLineStyle { get; set; }= LineStyle.Solid;
 
-        public void Plot(Func<double,double>f,double MinX, double MaxX,double stepX,OxyColor color, double StrokeThickness)
+        public PlotBuilde Plot(Func<double,double>f,double MinX, double MaxX,double stepX,OxyColor color, double StrokeThickness)
         {
             Plots.Add((f, MinX, MaxX, stepX, color, StrokeThickness));
+            return this;
         }
 
+        public PlotBuilde SetAsixleftMajorGridLineColor(OxyColor color)
+        {
+            AsixleftMajorGridLineColor = color;
+            return this;
+
+        }
+
+        public PlotBuilde SetAsixBottontMajorGridLineColor(OxyColor color)
+        {
+            AsixBottontMajorGridLineColor = color;
+            return this;
+
+        }
+        public PlotBuilde SetAsixleftMajorGridLineStyle(LineStyle style)
+        {
+            AsixleftMajorGridLineStyle = style;
+            return this;
+
+        }
+        public PlotBuilde SetAsixBottontMajorGridLineStyle(LineStyle style)
+        {
+            AsixBottontMajorGridLineStyle = style;
+            return this;
+
+        }
+        public PlotBuilde SetAsixleftMinorGridLineColor(OxyColor color)
+        {
+            AsixleftMinorGridLineColor = color;
+            return this;
+
+        }
+        public PlotBuilde SetAsixBottonMinorfGridLineStyle(OxyColor color)
+        {
+            AsixBottonMinorfGridLineStyle = color;
+            return this;
+
+        }
+        public PlotBuilde SetAsixleftMinorrGridLineStyle(LineStyle style)
+        {
+            AsixleftMinorrGridLineStyle = style;
+            return this;
+
+        }
+        public PlotBuilde SetAsixBottonMinorGridLineStyle(LineStyle style)
+        {
+            AsixBottonMinorGridLineStyle = style;
+            return this;
+
+        }
+
+        public PlotBuilde SetBackground(OxyColor color)
+        {
+            Background = color;
+            return this;
+        }
         public PlotModel CreateModel()
         {
              var model = new PlotModel
@@ -90,7 +116,7 @@ namespace ConsoleApp1
                 //добавляем пару осей(необязательно)
                 Axes =
                 {
-                    new LinearAxis//так же мы можем в осинах устанавливать свои настройки 
+                    new LinearAxis//так же мы можем в осях  устанавливать свои настройки 
                     {
                     Position = AxisPosition.Left,
                     MajorGridlineColor=AsixleftMajorGridLineColor,
