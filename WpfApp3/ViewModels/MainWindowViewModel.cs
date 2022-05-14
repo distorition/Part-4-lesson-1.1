@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp3.infastructure;
+using WpfApp3.infastructure.Extencion;
 using WpfApp3.ViewModels.Base;
 
 namespace WpfApp3.ViewModels
@@ -38,7 +39,7 @@ namespace WpfApp3.ViewModels
         private string _description=null;
         public string Description { get => _description; set => Set(ref _description, value); }
         private ICommand? _ShowMessageCommadn;
-        public ICommand ShowCaomandMessage => _ShowMessageCommadn ??= new LamdaCommands(OnShowMessageCommandExeption, CanShowMessageCommandExeption);
+        public ICommand ShowCaomandMessage => _ShowMessageCommadn ??= new LamdaCommands(OnShowMessageCommandExeption, CanShowMessageCommandExeption).Debug();
         private bool CanShowMessageCommandExeption(object parametr)//при помощи этого метода будем давать разрешения на выполнения команды 
         {
             if (parametr is null) return false;//если там null то наша команда не выолняется 
