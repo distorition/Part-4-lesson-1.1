@@ -16,10 +16,10 @@
             <TextBox Margin="10" Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox  Margin="10" Text="{Binding Title}"/>
             <TextBlock Margin="10" Text="{Binding Title}"/>
-            <Button Margin="10" Content="{Binding Title}" CommandParameter="123" >
-                <Button.Command>
+            <Button Margin="10" Content="{Binding Title}" CommandParameter="{Binding Title}" Command="{Binding ShowCaomandMessage}" >
+                <!--<Button.Command>
                 <cmd:ShowMessageComands/>
-                </Button.Command>
+                </Button.Command>-->
             </Button>
 
 

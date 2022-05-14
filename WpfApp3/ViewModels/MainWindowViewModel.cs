@@ -39,12 +39,18 @@ namespace WpfApp3.ViewModels
         public string Description { get => _description; set => Set(ref _description, value); }
         private ICommand? _ShowMessageCommadn;
         public ICommand ShowCaomandMessage => _ShowMessageCommadn ??= new LamdaCommands(OnShowMessageCommandExeption, CanShowMessageCommandExeption);
-        private bool CanShowMessageCommandExeption(object parametr) => true;
+        private bool CanShowMessageCommandExeption(object parametr)//при помощи этого метода будем давать разрешения на выполнения команды 
+        {
+            if (parametr is null) return false;//если там null то наша команда не выолняется 
+            var message = parametr as string ?? parametr.ToString();
+            if(message.Length > 0) return true;
+            return false;//если наше сообщения по длинне символлов равна 0 то тоже не выполняем 
+        }
         private void OnShowMessageCommandExeption(object parametr)
         {
             if (parametr is null) return;
             var message= parametr as string??parametr.ToString();
-            MessageBox.Show(message,"Сообщение без модели ",MessageBoxButton.OK,MessageBoxImage.Information);
+            MessageBox.Show(message,"Сообщение без модели окна",MessageBoxButton.OK,MessageBoxImage.Information);
         }
 
     }
