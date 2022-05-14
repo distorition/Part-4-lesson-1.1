@@ -16,10 +16,25 @@ namespace ConsoleApp1
        List<Student> Diserialaized(Stream textReader);
 
     }
+    public enum StudentSerializerType
+    {
+        Xml,
+        Binary
+    }
     public abstract class StudentSerialazer : IStudentSerialazer//мы реализовали абстрактный класс за тем чтобы реализовать в нем какие то общие методы
     {
+        public static StudentSerialazer Xml() => new XmlStudentSerialazer();// таким образом теперь мы сможем в самом конструктаре выбирать тип сериализации 
+
+        public static StudentSerialazer Binary() => new BinarySerialazedStudent();
+
+        public static StudentSerialazer Create(StudentSerializerType type = StudentSerializerType.Xml) => type switch
+        {    StudentSerializerType.Xml => Xml(),
+            StudentSerializerType.Binary => Binary(),
+            _=> throw new ArgumentOutOfRangeException(nameof(type),type,null)
+        };
         public abstract List<Student> Diserialaized(Stream textReader);
         public abstract void Serialaized(Stream textWriter, List<Student> students);
+
     }
 
     internal class XmlStudentSerialazer : StudentSerialazer//класс для сериализации в формате Xml
@@ -53,18 +68,19 @@ namespace ConsoleApp1
     /// <summary>
     /// тут есть проблема ибо джейсон почему то не принимает лист со студентами
     /// </summary>
+
     //internal class JsonSerialazedStudent : StudentSerialazer// класс для сериализации в формате  Json
     //{
-    
+
     //    public override List<Student> Diserialaized(Stream textReader)
     //    {
     //        return JsonSerializer.Deserialize<List<Student>>(textReader) ?? throw new InvalidOperationException("Не удалось получить список студентов ");//если в наш список будет равен Null то мы получим ошибку 
     //    }
-    
 
-    //    public override void Serialaized(Stream textWriter, List<Student>students)
+
+    //    public override void Serialaized(Stream textWriter, List<Student> students)
     //    {
-           
+
     //        JsonSerializer.Serialize(textWriter, students);
     //    }
     //}

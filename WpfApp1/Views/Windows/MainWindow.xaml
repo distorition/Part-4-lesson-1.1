@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModels"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="487" Width="1107">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid Height="440" VerticalAlignment="Top">
+        <StackPanel Margin="10">
+            <TextBox Margin="10" Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox  Margin="10" Text="{Binding Title}"/>
+            <TextBlock Margin="10" Text="{Binding Title}"/>
+            <Button Margin="10" Content="{Binding Title}"/>
+        </StackPanel>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="289,398,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartColcButton"/>
+        <TextBlock HorizontalAlignment="Left" Margin="289,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="48" Width="143"><Run Text="TextBlock"/><InlineUIContainer>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock" Name="ResultTextBlock"/>
+            </InlineUIContainer></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="74,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-1.282,0.475" Height="52" Width="119" x:Name="Fibonachi"><Run Text="TextBlock"/></TextBlock>
+        <Button Content="CalcFibonachi" HorizontalAlignment="Left" Margin="74,391,0,0" VerticalAlignment="Top" Width="119" Height="49" Click="StartCalcFibonachi"/>
+        <TextBlock HorizontalAlignment="Left" Margin="74,265,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="-1.782,-3.275" Name="Taimer" Width="55"/>
+        <TextBlock Name="ResultText" HorizontalAlignment="Left" Margin="568,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="143"><Run Text="Text"/><Run Text="Bl"/><Run Text="ock"/><InlineUIContainer>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock" x:Name="ResultTextBlock1"/>
+            </InlineUIContainer></TextBlock>
+        <Button Name ="StartButton"  Content="Start" HorizontalAlignment="Left" Margin="583,350,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="StartProgres"/>
+        <Button Name="CancelButton" IsEnabled="False" Content="Cancel" HorizontalAlignment="Left" Margin="578,393,0,0" VerticalAlignment="Top" Width="133" Height="34" Click="ClalcButton"/>
+        <ProgressBar Name="ProgressInfo" HorizontalAlignment="Left" Height="24" Margin="558,319,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.516,1.707" >
+            <ProgressBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="359.216"/>
+                    <TranslateTransform X="0.66" Y="-0.049"/>
+                </TransformGroup>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
+        <ProgressBar Name="ProgresFibonachi" HorizontalAlignment="Left" Height="24" Margin="74,360,0,0" VerticalAlignment="Top" Width="148"/>
+    </Grid>
+</Window>

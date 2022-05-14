@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    [Serializable]// нам нужен этот атрибут для Binary сериализации ибо он старый  и требует наличие этого арибута 
     public class Student
     {
         public int Id { get; set; }

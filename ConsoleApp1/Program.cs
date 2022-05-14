@@ -50,15 +50,22 @@ namespace ConsoleApp1
             //{
             //    student1=(Student?) xmlSer.Deserialize(xmlFile);
             //}
-            var xmlSerialezd = new XmlStudentSerialazer();
-            var binarySerialaized = new BinarySerialazedStudent();
 
-            var student_Manager= new StudentManager(xmlSerialezd);
+            //var xmlSerialezd = new XmlStudentSerialazer();
+            //var binarySerialaized = new BinarySerialazedStudent();
+
+            //таким образом мы сможем указывать тип сериализации прямо в конструкторе 
+            //var student_Manager= new StudentManager(StudentSerialazer.Xml());
+
+            //либо же указать тип сериализации
+            var serialized = StudentSerializerType.Binary;
+           var student_Manager = new StudentManager(StudentSerialazer.Create(serialized));
+
             student_Manager.Add("Ivanov","ivan","Ivanovic",DateTime.Now.AddYears(-18));
             student_Manager.Add("Andrey", "Evdakimovich", "Ivanovic", DateTime.Now.AddYears(-18));
             student_Manager.Add("Anton", "Gandon", "Ivanovic", DateTime.Now.AddYears(-18));
 
-            const string file_name = "student.xml";
+            var file_name = $"student.{serialized}";//и тогда мы сможем автоматически указыыать тип сериализации в нашем файле 
             student_Manager.SvaeTo(file_name);
             //XmlSerializer serializer = new XmlSerializer(typeof(Student));
             //BinaryFormatter binary= new BinaryFormatter();

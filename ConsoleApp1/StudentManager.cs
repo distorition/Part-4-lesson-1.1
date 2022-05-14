@@ -13,7 +13,7 @@ namespace ConsoleApp1
         private readonly IStudentSerialazer Serialazer;
         private List<Student> students= new List<Student>();
         private int Count = 1;
-        public  StudentManager(IStudentSerialazer studentSerialazer)
+        public  StudentManager(IStudentSerialazer studentSerialazer)// так мыб сможем добавлять конкретный сериализатор 
         {
             Serialazer = studentSerialazer;
         }
