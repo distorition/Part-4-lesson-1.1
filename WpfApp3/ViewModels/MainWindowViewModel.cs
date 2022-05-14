@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using WpfApp1.infastructure;
-using WpfApp1.ViewModels.Base;
+using WpfApp3.infastructure;
+using WpfApp3.ViewModels.Base;
 
-namespace WpfApp1.ViewModels
+namespace WpfApp3.ViewModels
 {
     /// <summary>
     /// Лоигка модели представляения 
@@ -36,12 +37,14 @@ namespace WpfApp1.ViewModels
 
         private string _description=null;
         public string Description { get => _description; set => Set(ref _description, value); }
-        private ICommand _ShowMessageCommadn;
+        private ICommand? _ShowMessageCommadn;
         public ICommand ShowCaomandMessage => _ShowMessageCommadn ??= new LamdaCommands(OnShowMessageCommandExeption, CanShowMessageCommandExeption);
         private bool CanShowMessageCommandExeption(object parametr) => true;
         private void OnShowMessageCommandExeption(object parametr)
         {
-
+            if (parametr is null) return;
+            var message= parametr as string??parametr.ToString();
+            MessageBox.Show(message,"Сообщение без модели ",MessageBoxButton.OK,MessageBoxImage.Information);
         }
 
     }
