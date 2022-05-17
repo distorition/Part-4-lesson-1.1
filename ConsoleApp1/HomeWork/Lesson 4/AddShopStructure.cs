@@ -20,12 +20,12 @@ namespace ConsoleApp1.HomeWork.Lesson_4
             ShopStructure.Add(shop);
             return shop;
         }
-        public ShopStructure Add(string Name, string Description, decimal Price)
+        public ShopStructure Add(char Name, char Description, decimal Price)
         {
             var shop = new ShopStructure()
             {
-                Name = Name,
-                Description = Description,
+                CharName = Name,
+                CharDescription = Description,
                 DecimalPrice = Price
             };
             ShopStructure.Add(shop);
