@@ -11,7 +11,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            LamdaExpression.Run();
+           //LamdaExpression.Run();
+            PatternStrategy.Run();
         }
     }
 }

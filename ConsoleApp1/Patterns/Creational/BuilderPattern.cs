@@ -185,7 +185,7 @@ namespace ConsoleApp1
     {
         // при помощи этого метода мы сразу открое фаил для просмотрат 
         public static Process? Execute(this FileInfo file, string Args = "", bool UseShellExecute = true) =>
-            Process.Start(new ProcessStartInfo(UseShellExecute ? file.ToString() : file.FullName, Args));//запускаем новйы процесс для нашего файла 
+            Process.Start(new ProcessStartInfo(UseShellExecute ? file.ToString() : file.FullName, Args) { UseShellExecute=UseShellExecute});//запускаем новйы процесс для нашего файла 
 
         public static Process ShonInExplorer([NotNull] this FileSystemInfo dir)=>// при поммощи этого метода мы открываем наш файли сразу прям из его папки 
             Process.Start("explorer",$"/select,\"{dir.FullName}\"");
