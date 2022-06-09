@@ -9,10 +9,17 @@ namespace ConsoleApp1
 {
     class Program
     {
+        public  static int SS { get; } = 0;
         static void Main(string[] args)
         {
-           //LamdaExpression.Run();
-            PatternStrategy.Run();
+            //LamdaExpression.Run();
+            //PatternStrategy.Run();
+            //SS = 1;
+            Console.WriteLine(SS);
         }
+            
+        
+        
     }
+
 }

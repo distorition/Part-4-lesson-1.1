@@ -12,8 +12,4 @@
     <PackageReference Include="System.Text.Json" Version="6.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="HomeWork\Lesson 5\" />
-  </ItemGroup>
-
 </Project>
