@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Entities
 {
-    internal class Orderitem:Entity
+    public class Orderitem:Entity
     {
         public Product product { get; set; } = null!;// таким образом каждому элементу заказа может принаждлежать только один товар а каждома товару множество элементов заказа
         public int Quanity { get; set; }

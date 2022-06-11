@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Entities.Base
 {
-    internal class Entity
+    public class Entity
     {
         public int id { get; set; }
     }

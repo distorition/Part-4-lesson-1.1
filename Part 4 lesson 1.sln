@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp3", "WpfApp3\WpfApp3.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9FC6B322-50EC-470F-9E0D-0D19D0FD8D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.DAL", "Orders.DAL\Orders.DAL.csproj", "{8D65858E-B5A2-4C41-A6C4-595C116B77C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.DAL", "Orders.DAL\Orders.DAL.csproj", "{8D65858E-B5A2-4C41-A6C4-595C116B77C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.ConsoleUI", "Orders.ConsoleUI\Orders.ConsoleUI.csproj", "{C60EC4E5-345C-4EC7-95C6-62573AF12295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{8D65858E-B5A2-4C41-A6C4-595C116B77C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D65858E-B5A2-4C41-A6C4-595C116B77C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D65858E-B5A2-4C41-A6C4-595C116B77C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 		{8D65858E-B5A2-4C41-A6C4-595C116B77C0} = {9FC6B322-50EC-470F-9E0D-0D19D0FD8D9E}
+		{C60EC4E5-345C-4EC7-95C6-62573AF12295} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}

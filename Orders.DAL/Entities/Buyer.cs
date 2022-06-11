@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Entities
 {
-    internal class Buyer:NamedEntity
+    public class Buyer:NamedEntity
     {
         public string? LastName { get; set; } 
         public string? Patronomic { get; set; }

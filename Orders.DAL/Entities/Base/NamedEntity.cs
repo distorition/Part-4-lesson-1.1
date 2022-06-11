@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Entities.Base
 {
-    internal class NamedEntity:Entity
+    public class NamedEntity:Entity
     {
         [Required]
         public string Name { get; set; } = null!;

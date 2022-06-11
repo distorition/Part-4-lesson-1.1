@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Context
 {
-    internal class OrdersDB:DbContext
+    public  class OrdersDB:DbContext
     {
         public DbSet<Buyer> buyers { get; set; }
         public DbSet<Order> orders { get; set; }

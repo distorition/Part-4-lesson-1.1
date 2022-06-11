@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.DAL.Entities
 {
-    internal class Order:Entity
+    public class Order:Entity
     {
         public DateTime Date { get; set; }
         [Required]
