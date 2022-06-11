@@ -1,9 +1,19 @@
 using AgainWebApp.Infastructure.MidleWare;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Orders.DAL.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(container =>  //c помощью этого контейнера можно проводить регитсрацию различный сервисов при помощи сервисов Autofac
+{
+
+});
+
 
 /// <summary>
 /// после того как в преложения WebApp мы добавляем зависимость нашей базы данных нам нужно будет сделать конфигруацию сервисов 
