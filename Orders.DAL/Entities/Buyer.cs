@@ -12,5 +12,6 @@ namespace Orders.DAL.Entities
         public string? LastName { get; set; } 
         public string? Patronomic { get; set; }
         public DateTime Birthday { get; set; }
+        public string? AboutMySelf { get; set; }
     }
 }

@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Orders.DAL\Orders.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsetings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

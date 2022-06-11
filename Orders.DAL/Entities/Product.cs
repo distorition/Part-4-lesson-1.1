@@ -13,5 +13,6 @@ namespace Orders.DAL.Entities
         [Column(TypeName ="decimal(18,2)")]//ттут мы указываем какой тип для типа decimal будет соотвествовать в базе данных 
         public decimal Price { get; set; }
         public string? Category { get; set; }
+        public string? Description { get; set; }
     }
 }

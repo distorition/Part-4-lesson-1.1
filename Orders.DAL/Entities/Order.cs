@@ -18,5 +18,6 @@ namespace Orders.DAL.Entities
         [Required]
         public Buyer buyer { get; set; } = null!;
         public ICollection<Orderitem> Items { get; set; }=new HashSet<Orderitem>();//и этого свойтсва  то есть ( к каждому заказу может принадлежать множесто элементов заказа )
+        public string? Description { get; set; }
     }
 }
