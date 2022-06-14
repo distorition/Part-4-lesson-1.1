@@ -1,9 +1,14 @@
+using AgainWebApp.Infastructure.Autofac;
 using AgainWebApp.Infastructure.MidleWare;
+using AgainWebApp.Services;
+using AgainWebApp.Services.Interfaces;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Divergic.Configuration.Autofac;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Orders.DAL.Context;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +16,20 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(container =>  //c помощью этого контейнера можно проводить регитсрацию различный сервисов при помощи сервисов Autofac
 {
+    container.RegisterType<SqlOrderService>()//когда мы регистрируем наш контейнер то в начале указываем класс реализации
+    .As<IOrderService>()//потом интерфейс который мы реализовали в классе 
+    .InstancePerLifetimeScope();// а потом врем€ жизни регистрации
+
+    //  container.RegisterType<SqlOrderService>().InstancePerLifetimeScope();//(таким образом если у нас было бы реализованно большего одного интрейрфеса то они бы все были бы реализованны)
+
+    //container.RegisterModule<ServicesModule>();//таким образом мы либо указываем где зарегистрированы нашии сервисы 
+    //container.RegisterAssemblyModules(Assembly.GetEntryAssembly()!);//загрузка наших модулей из текущей сборки ( откуда начинает работать наше приложение)
+    container.RegisterAssemblyModules(typeof(Program).Assembly);//таким образом у этого типа будет извлечена сборка и будут загружены все моудли это сборки 
+
+    //var config = new ConfigurationBuilder()//создаем обьект который будет формироватьс€€ на основе файлов конфигурации ( config)
+    //.AddJsonFile("autofac.config").Build();//таким образом мы тоже можем загружать все наши ссервисы при помщи файлов конфигурации ( config) 
+
+    //container.RegisterModule(new ConfigurationModule(new JsonResolver<>()));
 
 });
 
@@ -26,6 +45,8 @@ var service = builder.Services;
 var configuration = builder.Configuration;
 
 service.AddDbContext<OrdersDB>(opt => opt.UseSqlServer(configuration.GetConnectionString("SqlServer")));//конфигурируем доступ к базе данных
+
+//service.AddTransient<IOrderService, SqlOrderService>();//стандартна€ регистраци€ нашего сервиса
 
 #endregion
 

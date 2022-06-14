@@ -17,7 +17,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9FC6B322-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.DAL", "Orders.DAL\Orders.DAL.csproj", "{8D65858E-B5A2-4C41-A6C4-595C116B77C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.ConsoleUI", "Orders.ConsoleUI\Orders.ConsoleUI.csproj", "{C60EC4E5-345C-4EC7-95C6-62573AF12295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.ConsoleUI", "Orders.ConsoleUI\Orders.ConsoleUI.csproj", "{C60EC4E5-345C-4EC7-95C6-62573AF12295}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkHome", "WorkHome", "{3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson 4", "Lesson 4", "{60BD87D3-B51D-4A43-8541-DCC8E47213D2}"
+	ProjectSection(SolutionItems) = preProject
+		ConsoleApp1\HomeWork\Lesson 4\AddShopStructure.cs = ConsoleApp1\HomeWork\Lesson 4\AddShopStructure.cs
+		ConsoleApp1\HomeWork\Lesson 4\ShopSerialaized.cs = ConsoleApp1\HomeWork\Lesson 4\ShopSerialaized.cs
+		ConsoleApp1\HomeWork\Lesson 4\ShopStructure.cs = ConsoleApp1\HomeWork\Lesson 4\ShopStructure.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson 5", "Lesson 5", "{8001B29C-78FD-4A8E-8D3A-D54022EC1D15}"
+	ProjectSection(SolutionItems) = preProject
+		ConsoleApp1\HomeWork\Lesson 5\Scan.cs = ConsoleApp1\HomeWork\Lesson 5\Scan.cs
+		ConsoleApp1\HomeWork\Lesson 5\ScanVisitor.cs = ConsoleApp1\HomeWork\Lesson 5\ScanVisitor.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogSeatings", "LogSeatings", "{39A584C6-15BB-47CE-836B-D86D3E6A4498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson 6", "Lesson 6", "{484E07BE-F09E-435F-9C97-E41A887BF5C5}"
+	ProjectSection(SolutionItems) = preProject
+		AgainWebApp\Lesson 6\IVisitAsync.cs = AgainWebApp\Lesson 6\IVisitAsync.cs
+		AgainWebApp\Lesson 6\ModuleVisitor.cs = AgainWebApp\Lesson 6\ModuleVisitor.cs
+		AgainWebApp\Lesson 6\ScanVisitorAsync.cs = AgainWebApp\Lesson 6\ScanVisitorAsync.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogSeating", "LogSeating", "{5CAF9415-2113-4D29-B43A-E2D16035AC8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Factory", "Factory", "{8B224EB2-AB0F-4BA5-AA7E-726D0A6F2667}"
+	ProjectSection(SolutionItems) = preProject
+		AgainWebApp\Lesson 6\LogsSeting\Factory\DebugFactory.cs = AgainWebApp\Lesson 6\LogsSeting\Factory\DebugFactory.cs
+		AgainWebApp\Lesson 6\LogsSeting\Factory\LogerFactory.cs = AgainWebApp\Lesson 6\LogsSeting\Factory\LogerFactory.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntrefaceLoger", "IntrefaceLoger", "{538E2210-1B4E-46B4-AE57-41347B6E7AAA}"
+	ProjectSection(SolutionItems) = preProject
+		AgainWebApp\Lesson 6\LogsSeting\InterfaceLoger\ILoger.cs = AgainWebApp\Lesson 6\LogsSeting\InterfaceLoger\ILoger.cs
+		AgainWebApp\Lesson 6\LogsSeting\InterfaceLoger\ILogsFactory.cs = AgainWebApp\Lesson 6\LogsSeting\InterfaceLoger\ILogsFactory.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loggers", "Loggers", "{0BB58218-B491-4532-AB66-BF32EF2C85F0}"
+	ProjectSection(SolutionItems) = preProject
+		AgainWebApp\Lesson 6\LogsSeting\Loggers\ConsoleLogs.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\ConsoleLogs.cs
+		AgainWebApp\Lesson 6\LogsSeting\Loggers\FilesLoggers.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\FilesLoggers.cs
+		AgainWebApp\Lesson 6\LogsSeting\Loggers\ForLogs.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\ForLogs.cs
+		AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +103,14 @@ Global
 		{5FB655CF-9EBB-49D4-9EE7-C7C8497122A4} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 		{8D65858E-B5A2-4C41-A6C4-595C116B77C0} = {9FC6B322-50EC-470F-9E0D-0D19D0FD8D9E}
 		{C60EC4E5-345C-4EC7-95C6-62573AF12295} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
+		{60BD87D3-B51D-4A43-8541-DCC8E47213D2} = {3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}
+		{8001B29C-78FD-4A8E-8D3A-D54022EC1D15} = {3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}
+		{39A584C6-15BB-47CE-836B-D86D3E6A4498} = {8001B29C-78FD-4A8E-8D3A-D54022EC1D15}
+		{484E07BE-F09E-435F-9C97-E41A887BF5C5} = {3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}
+		{5CAF9415-2113-4D29-B43A-E2D16035AC8C} = {484E07BE-F09E-435F-9C97-E41A887BF5C5}
+		{8B224EB2-AB0F-4BA5-AA7E-726D0A6F2667} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
+		{538E2210-1B4E-46B4-AE57-41347B6E7AAA} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
+		{0BB58218-B491-4532-AB66-BF32EF2C85F0} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}

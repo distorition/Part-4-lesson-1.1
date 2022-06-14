@@ -11,7 +11,7 @@ namespace ConsoleApp1.HomeWork.Lesson_5
     {
         public void ScanFile(string NameFile)
         {
-            var visitors = new ScanVisitor();
+            var visitors = new ScanVisitorAsync();
             var dir= new DirectoryInfo(NameFile);
             visitors.Visit(dir);
         }
