@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loggers", "Loggers", "{0BB5
 		AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsExamples", "ReportsExamples\ReportsExamples.csproj", "{1CAE8865-418D-4670-A45D-D7777395ED1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60EC4E5-345C-4EC7-95C6-62573AF12295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{8B224EB2-AB0F-4BA5-AA7E-726D0A6F2667} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
 		{538E2210-1B4E-46B4-AE57-41347B6E7AAA} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
 		{0BB58218-B491-4532-AB66-BF32EF2C85F0} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
+		{1CAE8865-418D-4670-A45D-D7777395ED1D} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}

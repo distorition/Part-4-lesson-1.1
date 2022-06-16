@@ -24,12 +24,12 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>  //c помощью этог
 
     //container.RegisterModule<ServicesModule>();//таким образом мы либо указываем где зарегистрированы нашии сервисы 
     //container.RegisterAssemblyModules(Assembly.GetEntryAssembly()!);//загрузка наших модулей из текущей сборки ( откуда начинает работать наше приложение)
-    container.RegisterAssemblyModules(typeof(Program).Assembly);//таким образом у этого типа будет извлечена сборка и будут загружены все моудли это сборки 
+    container.RegisterAssemblyModules(typeof(Program));//таким образом у этого типа будет извлечена сборка и будут загружены все моудли это сборки 
 
-    //var config = new ConfigurationBuilder()//создаем обьект который будет формироватьс€€ на основе файлов конфигурации ( config)
-    //.AddJsonFile("autofac.config").Build();//таким образом мы тоже можем загружать все наши ссервисы при помщи файлов конфигурации ( config) 
+    var config = new ConfigurationBuilder()//создаем обьект который будет формироватьс€€ на основе файлов конфигурации ( config)
+    .AddJsonFile("autofac.config",false,false).Build();//таким образом мы тоже можем загружать все наши ссервисы при помщи файлов конфигурации ( config) 
 
-    //container.RegisterModule(new ConfigurationModule(new JsonResolver<>()));
+  //  container.RegisterModule(new ConfigurationModule((global::Divergic.Configuration.Autofac.IConfigurationResolver)config));
 
 });
 

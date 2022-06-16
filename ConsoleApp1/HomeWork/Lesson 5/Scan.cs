@@ -13,7 +13,7 @@ namespace ConsoleApp1.HomeWork.Lesson_5
         {
             var visitors = new ScanVisitorAsync();
             var dir= new DirectoryInfo(NameFile);
-            visitors.Visit(dir);
+            visitors.VisitAsync(dir);
         }
     }
 }
