@@ -17,8 +17,10 @@ var catalog = new ProductsCatalog("Каталог товаров", "Описан
 
 const string TeamPlateFile = "temlate.docx";
 IProductReports productReports = new ReportWord(TeamPlateFile);
-const string ReportFileNmae = "report.docx";
-CreateReport( productReports, catalog, ReportFileNmae);
+const string ReportFileNmae = "report.txt";
+//CreateReport( productReports, catalog, ReportFileNmae);
+
+CreateReport(new ReportRazor(), catalog, ReportFileNmae);
 
 static void CreateReport(IProductReports generator, ProductsCatalog catalog,string TeamplateFile)
 {
@@ -32,4 +34,4 @@ static void CreateReport(IProductReports generator, ProductsCatalog catalog,stri
     report_file.Execute();
 }
 
-Console.WriteLine("Hello, World!");
+
