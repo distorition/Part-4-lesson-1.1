@@ -12,6 +12,8 @@ namespace ReportsExamples.Interfaces
         DateTime DateTime { get; set; }
         string Description { get; set; }
 
+        IEnumerable<(int id, string name,string Description,decimal Price)> Products { get; set; }
+
         FileInfo Create(string ReportTeamplane);
     }
 }
