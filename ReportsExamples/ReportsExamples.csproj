@@ -12,4 +12,10 @@
     <PackageReference Include="TemplateEngine.Docx" Version="1.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="xml.teamplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

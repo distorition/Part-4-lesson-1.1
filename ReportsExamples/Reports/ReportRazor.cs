@@ -29,17 +29,41 @@ id   name   Description     Price
 Полная Стоимость @Model.TotalPrice.ToString(""c"")
 ";// так мы при помощи Razora создаем текстовый документ 
 
+        private readonly FileInfo _TemplaFile;
         public string CatalogName { get; set; }
         public DateTime DateTime { get; set; }
         public string Description { get; set; }
         public IEnumerable<(int id, string name, string Description, decimal Price)> Products { get; set ; }
+
+        public ReportRazor()
+        {
+
+        }
+
+        public ReportRazor(string TemplatePathFile)//при помощи такого конструктора мы сможем указывать откуда брать текст файла 
+        {
+            _TemplaFile = new FileInfo(TemplatePathFile);
+        }
 
         public FileInfo Create(string ReportTeamplane)
         {
            var report_file=  new FileInfo(ReportTeamplane);
             report_file.Delete();
 
-            var tamplete_text = TemplateTex;
+            // var tamplete_text = TemplateTex;
+           string tamplete_text;
+            if (_TemplaFile !=null)
+            {
+                if (!_TemplaFile.Exists)
+                {
+                    throw new FileNotFoundException(_TemplaFile.FullName);
+                }
+                using var reader = _TemplaFile.OpenText();
+                tamplete_text=reader.ReadToEnd();   
+            }
+            else
+                tamplete_text = TemplateTex;
+
             var result = Engine.Razor.RunCompile(tamplete_text,"ProductsTemplate",null,new //данный метод генерирует нам результат в текстовом виде 
             {
                 //эти параметры мы будем извлекать для полей в документе при помщи Razor
