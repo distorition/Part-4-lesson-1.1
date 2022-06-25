@@ -15,7 +15,7 @@ namespace ConsoleApp1.HomeWork.Lesson_5
         {
             foreach (var file in info.GetFiles())
             {
-                Datas = file.ReadAllText();
+                //Datas = file.ReadAllText();
             }
             foreach(var item in info.EnumerateDirectories())
             {
