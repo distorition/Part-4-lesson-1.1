@@ -44,6 +44,10 @@ var service = builder.Services;
 
 var configuration = builder.Configuration;
 
+
+service.AddControllersWithViews();//таким образом мы добавляем контроллеры вместо с представлениями ( то есть с визуальной частью Razor)
+
+
 service.AddDbContext<OrdersDB>(opt => opt.UseSqlServer(configuration.GetConnectionString("SqlServer")));//конфигурируем доступ к базе данных
 
 //service.AddTransient<IOrderService, SqlOrderService>();//стандартная регистрация нашего сервиса
@@ -52,10 +56,21 @@ service.AddDbContext<OrdersDB>(opt => opt.UseSqlServer(configuration.GetConnecti
 
 var app = builder.Build();
 
-app.UseMiddleware<TestMidleWare>();//таким образом мы доавляем в конвеер наше промежуточное ПО
-    
-app.MapGet("/", () => "Hello World!");
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
-UserManager<IdentityUser> userManager;//алгоритм для обработки информации
+app.UseStaticFiles();//желательно определять как можно раньше при постарении конвеера 
+
+app.UseRouting();
+
+//app.UseMiddleware<TestMidleWare>();//таким образом мы доавляем в конвеер наше промежуточное ПО
+    
+//app.MapGet("/", () => "Hello World!");
+
+//UserManager<IdentityUser> userManager;//алгоритм для обработки информации
+
+app.MapDefaultControllerRoute();
 
 app.Run();

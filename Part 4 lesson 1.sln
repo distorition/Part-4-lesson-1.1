@@ -65,7 +65,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loggers", "Loggers", "{0BB5
 		AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs = AgainWebApp\Lesson 6\LogsSeting\Loggers\ToCombineOurLogs.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsExamples", "ReportsExamples\ReportsExamples.csproj", "{1CAE8865-418D-4670-A45D-D7777395ED1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsExamples", "ReportsExamples\ReportsExamples.csproj", "{1CAE8865-418D-4670-A45D-D7777395ED1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson 7", "Lesson 7", "{DA034565-C04C-4066-A7CE-6B13E3D9994B}"
+	ProjectSection(SolutionItems) = preProject
+		ReportsExamples\Lesson 7\RazzorReportFile.cs = ReportsExamples\Lesson 7\RazzorReportFile.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{9DF8D4FD-CFEB-4CF4-8559-5C9CC24A64F6}"
+	ProjectSection(SolutionItems) = preProject
+		ReportsExamples\Lesson 7\Interfaces\IHddReports.cs = ReportsExamples\Lesson 7\Interfaces\IHddReports.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMVC", "TestMVC\TestMVC.csproj", "{63D81B86-0889-4408-8D77-F4FA8388E989}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +113,10 @@ Global
 		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CAE8865-418D-4670-A45D-D7777395ED1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D81B86-0889-4408-8D77-F4FA8388E989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D81B86-0889-4408-8D77-F4FA8388E989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D81B86-0889-4408-8D77-F4FA8388E989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D81B86-0889-4408-8D77-F4FA8388E989}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +134,9 @@ Global
 		{538E2210-1B4E-46B4-AE57-41347B6E7AAA} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
 		{0BB58218-B491-4532-AB66-BF32EF2C85F0} = {5CAF9415-2113-4D29-B43A-E2D16035AC8C}
 		{1CAE8865-418D-4670-A45D-D7777395ED1D} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
+		{DA034565-C04C-4066-A7CE-6B13E3D9994B} = {3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}
+		{9DF8D4FD-CFEB-4CF4-8559-5C9CC24A64F6} = {DA034565-C04C-4066-A7CE-6B13E3D9994B}
+		{63D81B86-0889-4408-8D77-F4FA8388E989} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}
