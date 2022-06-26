@@ -52,6 +52,12 @@ service.AddDbContext<OrdersDB>(opt => opt.UseSqlServer(configuration.GetConnecti
 
 //service.AddTransient<IOrderService, SqlOrderService>();//стандартная регистрация нашего сервиса
 
+//service.AddTransient<IEmployersStore, InMemoryEmploiesStore>();//так у нас содтрудники будут всегда одни и теже потому что изменения сохранятся не будут и создаваться они будут каждый раз заново 
+//service.AddSingleton<IEmployersStore, InMemoryEmploiesStore>();// все изменения сохраняются только на время дейсвтия нашего контроллера , после завршения все изменения сбрасываются 
+
+service.AddScoped<IEmployersStore, InMemoryEmploiesStore>();// тут наши изменения будут сохранятся в памяти 
+
+
 #endregion
 
 var app = builder.Build();

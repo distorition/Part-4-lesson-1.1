@@ -1,7 +1,32 @@
-﻿
+﻿@using AgainWebApp.Models
+@model IEnumerable<Employer>
 @{
     ViewData["Title"] = "Index";
 
 }
 
 <h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> id</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>отчество</th>
+            <th>Дата Рождения</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var employer in Model)
+        {
+            <tr>
+                <td>@employer.Id</td>
+                <td>@employer.LastName</td>
+                <td>@employer.FirstName</td>
+                <td>@employer.Birthday.ToString("d")</td>
+                <td>@employer.Patronomic</td>
+            </tr>
+        }
+    </tbody>
+</table>

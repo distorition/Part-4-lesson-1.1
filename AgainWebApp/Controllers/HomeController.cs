@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AgainWebApp.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgainWebApp.Controllers
 {
     public class HomeController:Controller
     {
+        private readonly IEmployersStore _EmployersStore;
         private readonly ILogger<HomeController> _Logger;
 
-        public HomeController(ILogger<HomeController> logger)//через конструктор в контроллер добавляются сервисы которыми он будет пользоваться 
+        public HomeController(IEmployersStore employersStore, ILogger<HomeController> logger)//через конструктор в контроллер добавляются сервисы которыми он будет пользоваться 
         {
+            _EmployersStore = employersStore;
             _Logger = logger;//так же все наши свервисы помещаются в приватные поля 
         }
 
@@ -21,7 +24,8 @@ namespace AgainWebApp.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
-            return View();
+            var employers = _EmployersStore.GetAll();//таким образом мы получаем всех наших сотрудников из нашего сервиса 
+            return View(employers);
         }
     }
 }
