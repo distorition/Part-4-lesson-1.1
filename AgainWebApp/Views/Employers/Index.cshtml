@@ -3,20 +3,34 @@
 @{
     ViewBag.Titel ="Сотрудники";
 }
-<table class="table">
+
+<a class="btn btn-primary" asp-action="Create">Создать</a>
+<br />
+<a  class="btn btn-secondary" asp-action="Edit">Cоздать2</a>
+<hr />
+@if (Model.Any())
+{
+    <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th> id</th>
             <th>Фамилия</th>
             <th>Имя</th>
             <th>отчество</th>
             <th>Дата Рождения</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach(var employer in Model)
         {
             <tr>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@employer.Id" class="text-danger">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
                 <td>@employer.Id</td>
                 <td>
                     <a asp-action="Details" asp-route-id=@employer.Id>@employer.LastName</a>
@@ -24,7 +38,17 @@
                 <td>@employer.FirstName</td>
                 <td>@employer.Birthday.ToString("d")</td>
                 <td>@employer.Patronomic</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employer.Id">
+                         <i class="fa fa-user-edit"> </i>
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
-</table>
+    </table>
+}
+else
+{
+    <p>сотрудников пока нет</p>
+}
