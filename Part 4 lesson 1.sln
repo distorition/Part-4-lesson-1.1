@@ -77,7 +77,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", 
 		ReportsExamples\Lesson 7\Interfaces\IHddReports.cs = ReportsExamples\Lesson 7\Interfaces\IHddReports.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMVC", "TestMVC\TestMVC.csproj", "{63D81B86-0889-4408-8D77-F4FA8388E989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMVC", "TestMVC\TestMVC.csproj", "{63D81B86-0889-4408-8D77-F4FA8388E989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.DAL", "Identity.DAL\Identity.DAL.csproj", "{5C0A75D3-9271-45BA-880B-D8C706019414}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{63D81B86-0889-4408-8D77-F4FA8388E989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63D81B86-0889-4408-8D77-F4FA8388E989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63D81B86-0889-4408-8D77-F4FA8388E989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0A75D3-9271-45BA-880B-D8C706019414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0A75D3-9271-45BA-880B-D8C706019414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0A75D3-9271-45BA-880B-D8C706019414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0A75D3-9271-45BA-880B-D8C706019414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{DA034565-C04C-4066-A7CE-6B13E3D9994B} = {3C12F9EB-8426-4E2F-8CB7-B5E1F0FF37A5}
 		{9DF8D4FD-CFEB-4CF4-8559-5C9CC24A64F6} = {DA034565-C04C-4066-A7CE-6B13E3D9994B}
 		{63D81B86-0889-4408-8D77-F4FA8388E989} = {C25339E9-36F9-4565-9ED6-0F5C83A7D33E}
+		{5C0A75D3-9271-45BA-880B-D8C706019414} = {9FC6B322-50EC-470F-9E0D-0D19D0FD8D9E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E693A52D-C083-440E-9B62-01547E5530D8}
