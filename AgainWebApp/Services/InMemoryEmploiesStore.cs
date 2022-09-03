@@ -22,7 +22,7 @@ namespace AgainWebApp.Services
                 LastName =$"Фамилия-{i}",
                 FirstName =$"Имя-{i}",
                 Patronomic =$"Отчество-{i}",
-                Birthday =DateTime.Now.AddYears(-18-i),
+                Age =18+i,
             }).ToList();
             _Logger = logger;
             MaxFreeid=_Employers.Max(x=>x.Id)+1;
@@ -47,7 +47,7 @@ namespace AgainWebApp.Services
             db_item.LastName=employer.LastName;
             db_item.FirstName=employer.FirstName;
             db_item.Patronomic=employer.Patronomic;
-            db_item.Birthday=employer.Birthday;
+            db_item.Age=employer.Age;
 
             //SaveChange() это если мы добавялем в базу данных
 

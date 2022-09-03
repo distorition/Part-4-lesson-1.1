@@ -35,7 +35,7 @@ namespace AgainWebApp.Controllers
                 LastName = employer.LastName,
             FirstName = employer.FirstName,
             Patronomic = employer.Patronomic,
-            Birthday = employer.Birthday,
+            Age = employer.Age,
         });//добавялем нашу вью модель
         }
 
@@ -44,13 +44,13 @@ namespace AgainWebApp.Controllers
 
         // так же формируем модель представления Razor и шаблон указываем наш контроллер то есть ( EmployersCOntroller)
         //в самом шаблоне есть два действия которая будет отправлять форму  нашего человека на кнопку Edit и вторая  которая будет принимать 
-        public IActionResult Edit(int? id )// отправляет 
+        public IActionResult Edit(int id )// отправляет 
         {
-            if(id is not null)
-            {
-                return View(new EmployersViewModel());
-            }
-            var employer = _EmployersStore.GetByID((int)id);//ищем пользвоателя по ид
+            //if(id is not null)
+            //{
+            //    return View(new EmployersViewModel());
+            //}
+            var employer = _EmployersStore.GetByID(id);//ищем пользвоателя по ид
 
             if (employer is null)//если не нашли то посылаем ошибку 404 
             {
@@ -63,7 +63,7 @@ namespace AgainWebApp.Controllers
                 LastName = employer.LastName,
                 FirstName = employer.FirstName,
                 Patronomic = employer.Patronomic,
-                Birthday = employer.Birthday,
+                Age = employer.Age,
             });//добавялем нашу вью модель
         }
 
@@ -76,29 +76,36 @@ namespace AgainWebApp.Controllers
             //    return NotFound();
             //}
 
-            var employee= new Employer
-            {
-                Id = model.Id,
-                LastName = model.LastName,
-                FirstName = model.FirstName,
-                Patronomic = model.Patronomic,
-                Birthday = model.Birthday,
-            };
+            if (ModelState.IsValid)
+                return View(model);//если есть ошибки то ту модель которая к нам пришла отпавляем обратно 
+            
 
-            if(employee.Id== 0)//если ид=0 значит это новый сотрудник 
-            {
-                var id = _EmployersStore.Add(employee);
-                return RedirectToAction("Details", new { id });
-            }
 
-            var succes = _EmployersStore.Edit(employee);
+                var employee = new Employer
+                {
+                    Id = model.Id,
+                    LastName = model.LastName,
+                    FirstName = model.FirstName,
+                    Patronomic = model.Patronomic,
+                    Age = model.Age,
+                };
 
-            if (!succes)
-            {
-                return NotFound();
-            }
+                if (employee.Id == 0)//если ид=0 значит это новый сотрудник 
+                {
+                    var id = _EmployersStore.Add(employee);
+                    return RedirectToAction("Details", new { id });
+                }
 
-            return RedirectToAction("Index");//возвращаем редирект на дейсвие индекс 
+                var succes = _EmployersStore.Edit(employee);
+
+                if (!succes)
+                {
+                    return NotFound();
+                }
+
+                return RedirectToAction("Index");//возвращаем редирект на дейсвие индекс 
+            
+           
         }
 
         public ActionResult Delete(int id)// первый запрос будет находить и формировать нашу модель 
@@ -117,7 +124,7 @@ namespace AgainWebApp.Controllers
                 LastName = employer.LastName,
                 FirstName = employer.FirstName,
                 Patronomic = employer.Patronomic,
-                Birthday = employer.Birthday,
+                Age = employer.Age,
             });
         }
 

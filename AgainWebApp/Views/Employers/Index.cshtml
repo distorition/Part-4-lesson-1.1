@@ -18,7 +18,7 @@
             <th>Фамилия</th>
             <th>Имя</th>
             <th>отчество</th>
-            <th>Дата Рождения</th>
+            <th>Возраст</th>
             <th></th>
         </tr>
     </thead>
@@ -36,7 +36,7 @@
                     <a asp-action="Details" asp-route-id=@employer.Id>@employer.LastName</a>
                 </td>
                 <td>@employer.FirstName</td>
-                <td>@employer.Birthday.ToString("d")</td>
+                <td>@employer.Age</td>
                 <td>@employer.Patronomic</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@employer.Id">
