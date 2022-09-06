@@ -74,7 +74,7 @@ service.ConfigureApplicationCookie(opt =>
     opt.Cookie.Name = "AgainWebMVC";
     opt.Cookie.HttpOnly = true;//так печеньки будут передаваться только по каналу Http
 
-    opt.Cookie.Expiration = TimeSpan.FromDays(10);//таким образом мы указываем время существования печенек
+   // opt.Cookie.Expiration = TimeSpan.FromDays(10);//таким образом мы указываем время существования печенек(устарела)
 
     opt.LoginPath = "/Account/Login";//система авторизации будет посылать юзера по этому адресу если ему надо авторизироваться 
     opt.LogoutPath = "/Account/Logout";
