@@ -5,6 +5,8 @@ using AgainWebApp.Services.Interfaces;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Divergic.Configuration.Autofac;
+using Identity.DAL.Context;
+using Identity.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Orders.DAL.Context;
@@ -44,12 +46,50 @@ var service = builder.Services;
 
 var configuration = builder.Configuration;
 
+service.AddIdentity<User,Role>()
+    .AddEntityFrameworkStores<IdentityDB>()
+    .AddDefaultTokenProviders();//так мы подключаем систему Identity
+
+service.Configure<IdentityOptions>(opt =>// вообще все это можно не добавлять ( тут мы можем настроить наш Identity)
+{
+#if DEBUG //таким образом мы делаем так чтобы все эти изменения работали только в режиме Debug
+
+    opt.Password.RequireDigit = false;//таким образом мы снимаем ограничения на цыфры ( то есть они необязательны)
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequiredLength = 3;// минимальная длинна пароля 
+
+#endif
+
+    opt.User.RequireUniqueEmail = false;// таким образом  отключили уникальный емаил  ( таким образом мы разрешили пользователям не указывать емаил)
+
+    opt.Lockout.AllowedForNewUsers = false;//таким образом мы ращрешили новым пользователям не поддтверждать свой емаил по почте 
+
+    opt.Lockout.MaxFailedAccessAttempts = 3;//таким образом указали максимальне кол-во попыток ввода пароля 
+
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);// тут мы указали время блокировки при неудачной попытке ввода
+});
+
+service.ConfigureApplicationCookie(opt =>
+{
+    opt.Cookie.Name = "AgainWebMVC";
+    opt.Cookie.HttpOnly = true;//так печеньки будут передаваться только по каналу Http
+
+    opt.Cookie.Expiration = TimeSpan.FromDays(10);//таким образом мы указываем время существования печенек
+
+    opt.LoginPath = "/Account/Login";//система авторизации будет посылать юзера по этому адресу если ему надо авторизироваться 
+    opt.LogoutPath = "/Account/Logout";
+    opt.AccessDeniedPath = "/Account/AccessDenied";// в случаи отказа доступа по этому адресу 
+
+    opt.SlidingExpiration = true;//таким образом разрешаем системе изменять индефикатор сессии когда юзер вошел или вышел ( это нужно для уменьшения вероятности атак)
+
+});
 
 service.AddControllersWithViews();//таким образом мы добавляем контроллеры вместо с представлениями ( то есть с визуальной частью Razor)
 
 
 service.AddDbContext<OrdersDB>(opt => opt.UseSqlServer(configuration.GetConnectionString("SqlServer")));//конфигурируем доступ к базе данных
 
+service.AddDbContext<IdentityDB>(opt => opt.UseSqlServer(configuration.GetConnectionString("Identity")));
 //service.AddTransient<IOrderService, SqlOrderService>();//стандартная регистрация нашего сервиса
 
 //service.AddTransient<IEmployersStore, InMemoryEmploiesStore>();//так у нас содтрудники будут всегда одни и теже потому что изменения сохранятся не будут и создаваться они будут каждый раз заново 
@@ -70,6 +110,10 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();//желательно определять как можно раньше при постарении конвеера 
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 //app.UseMiddleware<TestMidleWare>();//таким образом мы доавляем в конвеер наше промежуточное ПО
     

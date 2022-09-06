@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Identity.DAL.Entities
 {
-    internal class User:IdentityUser
+    public class User:IdentityUser
     {
 
     }
