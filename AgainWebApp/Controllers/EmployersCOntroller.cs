@@ -1,10 +1,13 @@
 ﻿using AgainWebApp.Models;
 using AgainWebApp.Services.Interfaces;
 using AgainWebApp.Services.ViewsModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgainWebApp.Controllers
 {
+    
+    //[Authorize(Roles ="Admin")]//при помощи этого атрибута мы сможем давать доступ к нашим сотрудникам только авторизироавнным пользователям , так же мы можем задать роль при которым будет даваться доступ
     public class EmployersCOntroller:Controller
     {
         private readonly IEmployersStore _EmployersStore;

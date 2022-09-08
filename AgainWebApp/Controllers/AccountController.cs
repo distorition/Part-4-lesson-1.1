@@ -18,7 +18,7 @@ namespace AgainWebApp.Controllers
             _Logger = Logger;
         }
 
-        #region Регистрация
+        #region РЕГИСТРАЦИЯ
         public IActionResult Register()=>View(new RegisterUserViewModel());//отплавляет пустую вью модель
 
         [HttpPost]
@@ -53,8 +53,49 @@ namespace AgainWebApp.Controllers
         }
         #endregion
 
-        public IActionResult LogIn() => View();
-        public IActionResult LogOut() => View();
+        #region ВХОД В СИСТЕМУ
+        //отправялем модель
+        public IActionResult LogIn(string? ReturnUrl) => View( new LoginViewModel { ReturnUrl= ReturnUrl });// обычно Url возвращает сама система когда мы выполняем логин 
+
+        [HttpPost]
+        public async Task<IActionResult> LogIn(LoginViewModel model)//принимаем модель
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+
+            }
+
+            var resut = await _SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);//тут наша авторизация ( проверям имя , пароль , запоминать нас или нет , и true это блокировать ли нас в случае недуачной попытки входа)     
+
+            if (resut.Succeeded)//толь если есть await мы сможем вызвать Succeeded
+            {
+                _Logger.LogInformation("Пользователь{0} вошел",model.UserName);// при логировании так делать нельзя $("Пользователь{model.UserName} вошел",)
+
+                //if(model.ReturnUrl is { Length:>0} return_url) //проверка на то есть ли у нас url и если есть то мы по нему переходим   
+                //{
+                //    return LocalRedirect(return_url);
+                //}
+
+                //return Redirect(model.ReturnUrl); ОПАСНО,  пользователя могут отправить туда куда не надо
+
+                //LocalRedirect это перенаправления в пределах вашего адреса чтобы пользователя не потравили куда то на внешние непонятные сайты 
+                return LocalRedirect(model.ReturnUrl??"/");//model.ReturnUrl??"/") по сути такая же проверка как сверху ( если нет юрл то перееходим на корень ) 
+
+            }
+            ModelState.AddModelError("", "Неверное имя пользователя или пароль");
+            _Logger.LogWarning("Ошибка при входе в систему{0}", model.UserName);
+
+            return View(model);//и отправляем обратно на представление 
+
+        }
+        #endregion
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _SignInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
         public IActionResult AcessDenied() => View();
 
     }

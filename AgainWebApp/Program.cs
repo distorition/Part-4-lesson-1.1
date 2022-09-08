@@ -75,6 +75,7 @@ service.ConfigureApplicationCookie(opt =>
     opt.Cookie.HttpOnly = true;//так печеньки будут передаваться только по каналу Http
 
    // opt.Cookie.Expiration = TimeSpan.FromDays(10);//таким образом мы указываем время существования печенек(устарела)
+   opt.ExpireTimeSpan=TimeSpan.FromMinutes(10);//время жизни печеннек
 
     opt.LoginPath = "/Account/Login";//система авторизации будет посылать юзера по этому адресу если ему надо авторизироваться 
     opt.LogoutPath = "/Account/Logout";

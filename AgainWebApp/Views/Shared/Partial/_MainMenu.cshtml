@@ -14,9 +14,33 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Employers" asp-action="Index">Сотрудники</a>
                         </li>
                           <li class="nav-item">
+                         @*   <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">Вход</a>
+                        </li>*@
+                @if (User.Identity.IsAuthenticated)
+                {
+                       <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">
+                                @User.Identity.Name
+                            </a>
+                    </li>
+
+                     <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Выход</a>
+                        </li>
+                }
+                else
+                {
+                    <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">Вход</a>
+                        </li>
+                }
+            </ul>
                 </div>
             </div>
         </nav>
