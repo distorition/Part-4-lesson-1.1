@@ -1,0 +1,9 @@
+﻿<catalog Name=""@Model.CatalogName"" ProductCount=""@Model.Products.Count()"">
+<CatalogDate>@Model.CatalogCreationTime.ToString(""dd.MM.yyyy HH:mm:ss"")</CatalogDate>
+<Product>
+@foreach(var product in Model.Products)
+{
+<Product Id=""@product.id"" Name=""@product.name""/>
+}
+</Product>
+</catalog

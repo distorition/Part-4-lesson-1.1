@@ -1,0 +1,14 @@
+﻿{
+  "defaultAssembly": "AgainWebApp",//указываем откуда будет грузить наши сервисы
+  "components": [
+    {
+      "type": "AgainWebApp.Services.SqlOrderService", //указываем интерфейсы
+      "services": [
+        {
+          "type": "AgainWebApp.Services.Interfaces.IOrderService"//указываем интерфейсы котоыре надо загрузить
+        }
+      ]
+    }
+
+  ]
+}

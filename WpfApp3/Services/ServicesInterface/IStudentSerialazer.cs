@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace ConsoleApp1
+{
+    public interface IStudentSerialazer//штука для одоптации всех трех лкасс Сериализации 
+    {
+        void Serialaized(Stream textWriter,List<Student> students);
+       List<Student> Diserialaized(Stream textReader);
+
+    }
+    public enum StudentSerializerType
+    {
+        Xml,
+        Binary,
+        Json
+    }
+    public abstract class StudentSerialazer : IStudentSerialazer//мы реализовали абстрактный класс за тем чтобы реализовать в нем какие то общие методы
+    {
+        public static StudentSerialazer Xml() => new XmlStudentSerialazer();// таким образом теперь мы сможем в самом конструктаре выбирать тип сериализации 
+
+        public static StudentSerialazer Binary() => new BinarySerialazedStudent();
+        public static JsonSerialazedStudent Json() => new JsonSerialazedStudent();
+
+        public static StudentSerialazer Create(StudentSerializerType type = StudentSerializerType.Xml) => type switch
+        {    StudentSerializerType.Xml => Xml(),
+            StudentSerializerType.Binary => Binary(),
+            StudentSerializerType.Json => Json(),
+            _=> throw new ArgumentOutOfRangeException(nameof(type),type,null)
+        };
+        public abstract List<Student> Diserialaized(Stream textReader);
+        public abstract void Serialaized(Stream textWriter, List<Student> students);
+
+    }
+
+    internal class XmlStudentSerialazer : StudentSerialazer//класс для сериализации в формате Xml
+    {
+        private static readonly XmlSerializer xmlSerilazer= new XmlSerializer(typeof(List<Student>));// XmlSerialazer всегда очень долго создается 
+        public override List<Student> Diserialaized(Stream textReader)
+        {
+            return (List<Student>?)xmlSerilazer.Deserialize(textReader) ?? throw new InvalidOperationException("Не удалось получить список студентов ");//если в наш список будет равен Null то мы получим ошибку 
+        }
+
+        public override void Serialaized(Stream textWriter, List<Student> students)
+        {
+            xmlSerilazer.Serialize(textWriter, students);
+        }
+    }
+
+    internal class BinarySerialazedStudent : StudentSerialazer// класс для сериализации в формате  Binary
+    {
+        private static readonly BinaryFormatter xmlSerilazer = new BinaryFormatter();
+        public override List<Student> Diserialaized(Stream textReader)
+        {
+            return (List<Student>?)xmlSerilazer.Deserialize(textReader) ?? throw new InvalidOperationException("Не удалось получить список студентов ");//если в наш список будет равен Null то мы получим ошибку 
+        }
+
+        public override void Serialaized(Stream textWriter, List<Student> students)
+        {
+            xmlSerilazer.Serialize(textWriter, students);
+        }
+    }
+
+    public class JsonSerialazedStudent : StudentSerialazer// класс для сериализации в формате  Json
+    {
+
+        public override List<Student> Diserialaized(Stream textReader)
+        {
+            return JsonSerializer.Deserialize<List<Student>>(textReader) ?? throw new InvalidOperationException("Не удалось получить список студентов ");//если в наш список будет равен Null то мы получим ошибку 
+        }
+
+
+        public override void Serialaized(Stream textWriter, List<Student> students)
+        {
+
+            JsonSerializer.Serialize(textWriter, students);
+        }
+    }
+
+}
